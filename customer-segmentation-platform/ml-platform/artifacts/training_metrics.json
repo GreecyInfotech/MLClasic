@@ -1,0 +1,12 @@
+{
+  "n_clusters": 4,
+  "silhouette_score": 0.15484916711748367,
+  "rows": 4000,
+  "features": [
+    "recency",
+    "frequency",
+    "monetary",
+    "age",
+    "income_band"
+  ]
+}

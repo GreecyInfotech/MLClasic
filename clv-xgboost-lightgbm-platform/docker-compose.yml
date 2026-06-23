@@ -1,0 +1,27 @@
+services:
+  api:
+    build: .
+    ports: ["8001:8001"]
+    environment:
+      APP_ENV: prod
+      PORT: 8001
+      DATABASE_URL: postgresql+psycopg2://clv:clv@db:5432/clv_platform
+      LOG_LEVEL: INFO
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: clv
+      POSTGRES_PASSWORD: clv
+      POSTGRES_DB: clv_platform
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U clv -d clv_platform"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes: [clv_pg_data:/var/lib/postgresql/data]
+volumes:
+  clv_pg_data:

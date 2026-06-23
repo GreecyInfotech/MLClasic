@@ -1,0 +1,13 @@
+{
+  "accuracy": 0.785,
+  "roc_auc": 0.7499589385016073,
+  "train_rows": 4000,
+  "test_rows": 1000,
+  "features": [
+    "debt_to_income",
+    "loan_to_income",
+    "employment_years",
+    "credit_score",
+    "delinquencies"
+  ]
+}

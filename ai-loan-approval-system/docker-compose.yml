@@ -1,0 +1,33 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENV: prod
+      DATABASE_URL: postgresql+psycopg2://loan:loan@db:5432/loan_approval
+      MODEL_PATH: ml/artifacts/loan_approval_model.pkl
+      LOG_LEVEL: INFO
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: loan
+      POSTGRES_PASSWORD: loan
+      POSTGRES_DB: loan_approval
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U loan -d loan_approval"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - loan_pg_data:/var/lib/postgresql/data
+
+volumes:
+  loan_pg_data:

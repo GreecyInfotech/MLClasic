@@ -1,0 +1,21 @@
+{
+  "berth-occupancy-lightgbm": {
+    "mae": 1.958178862479227
+  },
+  "claim-settlement-random-forest": {
+    "accuracy": 1.0
+  },
+  "customer-risk-scoring-gradient-boosting": {
+    "mae": 0.01194830675046655
+  },
+  "fraud-risk-score-gradient-boosting": {
+    "accuracy": 1.0,
+    "roc_auc": 1.0
+  },
+  "suspicious-transactions-autoencoder": {
+    "anomaly_threshold": 0.008022454711798733
+  },
+  "vessel-delay-prediction-xgboost": {
+    "mae": 1.764119882530014
+  }
+}
